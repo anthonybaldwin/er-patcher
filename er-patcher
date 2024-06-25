@@ -8,6 +8,10 @@ import struct
 import re
 from shutil import rmtree
 
+# Remove temporary directory if it exists
+tmp_dir = Path("er-patcher-tmp")
+if tmp_dir.exists() and tmp_dir.is_dir():
+    rmtree(tmp_dir)
 
 if __name__ == "__main__":
 
@@ -19,7 +23,7 @@ if __name__ == "__main__":
     parser.add_argument("-x", "--executable", action='store', type=str, default="eldenring.exe", help="The executable to launch, relative to the games folder.")
     parser.add_argument("--with-eac", action='store_true', help="Run game with EAC (Use at own your risk)")
     parser.add_argument("--disable-rune-loss", action='store_true', help="Disable losing runes upon death.")
-    parser.add_argument("--all", action='store_true', help="Enable all options except rate adjustment and gamplay changes like `--disable-rune-loss`.")
+    parser.add_argument("--all", action='store_true', help="Enable all options except rate adjustment and gameplay changes like `--disable-rune-loss`.")
     parser.add_argument("-u", "--ultrawide", action='store_true', help="Removes black bars when using a resolution with an aspect ratio other than 16:9.")
     parser.add_argument("-v", "--disable-vignette", action='store_true', help="Disables the vignette overlay.")
     parser.add_argument("-c", "--disable-ca", action='store_true', help="Disables chromatic abberation.")
